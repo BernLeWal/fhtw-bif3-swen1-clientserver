@@ -1,15 +1,12 @@
-﻿using System;
+﻿// See https://aka.ms/new-console-template for more information
+using HttpServer.MTCG;
+using System;
+using System.Net;
+using System.Net.Sockets;
 
-namespace HttpServer
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Simple HTTP-Server!");
-            Console.CancelKeyPress += (sender, e) => Environment.Exit(0);
+Console.WriteLine("Simple http-server! http://localhost:10001/");
+Console.WriteLine();
 
-            new HttpServer(8080).Run();
-        }
-    }
-}
+var server = new HttpServer.HTTP.HttpServer(IPAddress.Any, 10001);
+server.RegisterEndpoint("users", new UsersEndpoint());
+server.run();
