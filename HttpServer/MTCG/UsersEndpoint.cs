@@ -50,6 +50,7 @@ namespace HttpServer.MTCG
             users.Add(new User("Susi Sorglos", "0000"));
 
             rs.Content = JsonSerializer.Serialize(users);
+            rs.ContentType = "application/json";
             rs.ResponseCode = 200;
             rs.ResponseText= "OK";
         }
