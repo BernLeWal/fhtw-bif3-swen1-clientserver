@@ -27,7 +27,8 @@ namespace HttpServer.HTTP
             var writer = new StreamWriter(clientSocket.GetStream()) { AutoFlush = true };
             var response = new HttpResponse(writer);
 
-            var endpoint = httpServer.Endpoints[request.Path[1]];
+            IHttpEndpoint endpoint;
+            httpServer.Endpoints.TryGetValue(request.Path, out endpoint);
             if ( endpoint!=null )
             {
                 endpoint.HandleRequest(request, response);
@@ -38,8 +39,7 @@ namespace HttpServer.HTTP
                 response.ResponseCode = 404;
                 response.ResponseText = "Not Found";
                 response.Content = "<html><body>Not found!</body></html>";
-                response.Headers.Add("Content-Length", response.Content.Length.ToString());
-                response.Headers.Add("Content-Type", "text/plain"); // application/json
+                response.Headers.Add("Content-Type", "text/html"); // application/json
             }
             response.Process();
         }

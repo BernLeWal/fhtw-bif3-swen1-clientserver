@@ -45,6 +45,7 @@ namespace HttpServer.MTCG
 
         private void GetUsers(HttpRequest rq, HttpResponse rs)
         {
+            // BL 
             List<User> users = new List<User>();
             users.Add(new User("Rudi Ratlos", "1234"));
             users.Add(new User("Susi Sorglos", "0000"));

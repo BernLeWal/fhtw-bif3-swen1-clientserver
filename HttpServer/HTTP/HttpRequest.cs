@@ -13,7 +13,7 @@ namespace HttpServer.HTTP
         private StreamReader reader;
 
         public HttpMethod Method { get; private set; }
-        public string[] Path { get; private set; }
+        public string Path { get; private set; }
 
         public Dictionary<string, string> QueryParams = new();
         public string ProtocolVersion { get; private set; }
@@ -49,7 +49,7 @@ namespace HttpServer.HTTP
                         QueryParams.Add(queryParamParts[0], null);
                 }
             }
-            Path = pathParts[0].Split('/');
+            Path = pathParts[0];
 
             ProtocolVersion = firstLineParts[2];
 

@@ -40,7 +40,7 @@ namespace HttpServer.HTTP
             // headers... (skipped)
             if ( Content!= null && Content.Length>0 )
             {
-                Headers.Add("Content-Length", Content.Length.ToString());
+                Headers["Content-Length"] = Content.Length.ToString();
             }
             foreach( var kvp in Headers )
             {
